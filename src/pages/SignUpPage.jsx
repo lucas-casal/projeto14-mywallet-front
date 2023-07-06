@@ -11,7 +11,7 @@ export default function SignUpPage(props) {
     event.preventDefault()
     props.register()
   }
-  
+
   useEffect(()=>{
     props.registered ? navigate('/') : ''
   }, [props.registered])
@@ -20,11 +20,11 @@ export default function SignUpPage(props) {
     <SingUpContainer>
       <form onSubmit={sendRegister}>
         <MyWalletLogo />
-        <input onChange={props.handleName} placeholder="Nome" type="text" />
-        <input onChange={props.handleEmail} placeholder="E-mail" type="email" />
-        <input onChange={props.handlePassword} placeholder="Senha" type="password" autoComplete="new-password" />
-        <input onChange={props.handlePassCheck} placeholder="Confirme a senha" type="password" autocomplete="new-password" />
-        <button>Cadastrar</button>
+        <input data-test="name" onChange={props.handleName} placeholder="Nome" type="text" />
+        <input data-test="email" onChange={props.handleEmail} placeholder="E-mail" type="email" />
+        <input data-test="password" onChange={props.handlePassword} placeholder="Senha" type="password" autoComplete="new-password" />
+        <input data-test="conf-password" onChange={props.handlePassCheck} placeholder="Confirme a senha" type="password" autocomplete="new-password" />
+        <button data-test="sign-up-submit">Cadastrar</button>
       </form>
 
       <Link to='/'>

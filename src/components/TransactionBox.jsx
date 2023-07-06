@@ -7,9 +7,9 @@ export default function TransactionBox(props){
     <ListItemContainer>
         <InfoBox>
             <Data>{props.data}</Data>
-            <Descricao>{props.descricao}</Descricao>
+            <Descricao data-test="registry-name">{props.descricao}</Descricao>
         </InfoBox>
-        <Value color={props.tipo === 'entrada'? "positivo" : "negativo"}>{valor}</Value>
+        <Value data-test="registry-amount" color={props.tipo === 'entrada'? "positivo" : "negativo"}>{valor}</Value>
     </ListItemContainer>
   )
 }

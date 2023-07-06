@@ -20,9 +20,9 @@ export default function SignInPage(props) {
     <SingInContainer>
       <form onSubmit={(event) => goHome(event)}>
         <MyWalletLogo />
-        <input placeholder="E-mail" onChange={props.handleEmail} type="email" />
-        <input placeholder="Senha" onChange={props.handlePassword} type="password" autoComplete="new-password" />
-        <button>Entrar</button>
+        <input data-test="email" placeholder="E-mail" onChange={props.handleEmail} type="email" />
+        <input data-test="password" placeholder="Senha" onChange={props.handlePassword} type="password" autoComplete="new-password" />
+        <button data-test="sign-in-submit">Entrar</button>
       </form>
 
       <Link to='/cadastro'>

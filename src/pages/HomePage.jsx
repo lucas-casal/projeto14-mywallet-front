@@ -39,8 +39,8 @@ export default function HomePage(props) {
   return (
     <HomeContainer>
       <Header>
-        <h1>Olá, {name}</h1>
-        <BiExit />
+        <h1 data-test="user-name">Olá, {name}</h1>
+        <BiExit data-test="logout"/>
       </Header>
 
       <TransactionsContainer>
@@ -52,17 +52,17 @@ export default function HomePage(props) {
 
         <article>
           <strong>Saldo</strong>
-          <Value color={balance >= 0 ? "positivo" : "negativo"}>{balance}</Value>
+          <Value data-test="total-amount" color={balance >= 0 ? "positivo" : "negativo"}>{balance}</Value>
         </article>
       </TransactionsContainer>
 
 
       <ButtonsContainer>
-        <button onClick={() => {newIncome() ; props.setTipo("entrada") }}>
+        <button data-test="new-income" onClick={() => {newIncome() ; props.setTipo("entrada") }}>
           <AiOutlinePlusCircle />
           <p>Nova <br /> entrada</p>
         </button>
-        <button onClick={() => {newExpense() ; props.setTipo("saida") }}>
+        <button data-test="new-expense" onClick={() => {newExpense() ; props.setTipo("saida") }}>
           <AiOutlineMinusCircle />
           <p>Nova <br />saída</p>
         </button>

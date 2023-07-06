@@ -22,9 +22,9 @@ export default function TransactionsPage(props) {
     <TransactionsContainer>
       <h1>Nova {tipo}</h1>
       <form onSubmit={(event) => {submitForm(event)}}>
-        <input onChange={props.handleValue} placeholder="Valor" type="text"/>
-        <input onChange={props.handleDescription} placeholder="Descrição" type="text" />
-        <button>Salvar {tipo}</button>
+        <input data-test="registry-amount" onChange={props.handleValue} placeholder="Valor" type="text"/>
+        <input data-test="registry-name-input" onChange={props.handleDescription} placeholder="Descrição" type="text" />
+        <button data-test="registry-save" >Salvar {tipo}</button>
       </form>
     </TransactionsContainer>
   )
