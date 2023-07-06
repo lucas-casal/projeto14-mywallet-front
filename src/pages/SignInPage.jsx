@@ -10,7 +10,8 @@ export default function SignInPage(props) {
   function goHome(event){
     event.preventDefault()
     props.login()
-  }
+  }    
+  props.setLogged(false)
 
   useEffect(()=>{
     props.logged ? navigate('/home') : ''

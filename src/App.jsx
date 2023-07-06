@@ -24,13 +24,11 @@ export default function App() {
   function handleEmail(x){
     const wrote = x.target.value;
     setEmail(wrote);
-    console.log(wrote)
   }
 
   function handlePassword(x){
     const wrote = x.target.value;
     setPassword(wrote);
-    console.log(wrote)
   }
 
   function handleName(x){
@@ -45,13 +43,11 @@ export default function App() {
 
   function handleValue(x){
     const wrote = x.target.value;
-    console.log(wrote)
     setValue(wrote);
   }
 
   function handleDescription(x){
     const wrote = x.target.value;
-    console.log(wrote)
     setDescription(wrote);
   }
 
@@ -63,8 +59,8 @@ export default function App() {
         setLogged(true)
       })
       .catch (err => {
-        console.log(err.status)
-        alert(err.status)
+        console.log(err)
+        alert(`${err.response.status} - ${err.response.data}`)
         setLogged(false)
       })
   }
@@ -78,16 +74,14 @@ export default function App() {
       setRegistered(true)
     })
     .catch (err => {
-      console.log(err.status)
-      alert(err.status)
+      console.log(err.data)
+      alert(`${err.response.status} - ${err.response.data}`)
       setLogged(false)
     })
-}
+  }
 
   function sendTransaction(tipo){
-    console.log(tipo)
     const token = localStorage.getItem('token')
-    console.log(token)
     const valor = value.includes(',') ? value.replace(',', '.') : value 
     const objSent = {value: valor, description: description}
     axios.post(`${import.meta.env.VITE_API_URL}/nova-transacao/${tipo}`,
@@ -100,16 +94,32 @@ export default function App() {
     })
     .catch (err => {
       console.log(err)
+      alert(`${err.response.status} - ${err.response.data}`)
     })
-}
+  }
+
+  function logout(){
+    const token = localStorage.getItem('token')
+    axios.delete(`${import.meta.env.VITE_API_URL}/home`,{
+      headers: {"token": token}
+    })
+    .then( ans => {
+      console.log(ans)
+    })
+    .catch (err => {
+      console.log(err)
+      alert(`${err.response.status} - ${err.response.data}`)
+    })
+  }
+
   return (
     <PagesContainer>
       <BrowserRouter>
       <UserContext.Provider value={{token: localStorage.getItem('token')}}>
         <Routes>
-          <Route path="/" element={<SignInPage logged={logged} login={login} handleEmail={handleEmail} handlePassword={handlePassword}/>} />
+          <Route path="/" element={<SignInPage setLogged={setLogged} logged={logged} login={login} handleEmail={handleEmail} handlePassword={handlePassword}/>} />
           <Route path="/cadastro" element={<SignUpPage registered={registered} register={register} handleEmail={handleEmail} handlePassword={handlePassword} handleName={handleName} handlePassCheck={handlePassCheck}/>} />
-          <Route path="/home" element={<HomePage logged={logged} setTipo={setTipo} />} />
+          <Route path="/home" element={<HomePage logout={logout} logged={logged} setTipo={setTipo} />} />
           <Route path='/nova-transacao/:tipo' element={<TransactionsPage setSend={setSend} send={send} tipo={tipo} sendTransaction={sendTransaction} handleValue={handleValue} handleDescription={handleDescription}/>} />
         </Routes>
       </UserContext.Provider>

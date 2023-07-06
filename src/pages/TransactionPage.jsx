@@ -12,12 +12,6 @@ export default function TransactionsPage(props) {
     navigate('/home')
   }
 
- /*useEffect(() => {
-    props.setSend(false)
-
-  }, [props.send])*/
-
-
   return (
     <TransactionsContainer>
       <h1>Nova {tipo}</h1>

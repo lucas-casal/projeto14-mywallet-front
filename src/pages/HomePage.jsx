@@ -36,11 +36,16 @@ export default function HomePage(props) {
     navigate('/nova-transacao/saida')
   }
 
+  function logout(){
+    props.logout()
+    navigate('/')
+  }
+
   return (
     <HomeContainer>
       <Header>
         <h1 data-test="user-name">Olá, {name}</h1>
-        <BiExit data-test="logout"/>
+        <BiExit data-test="logout" onClick={logout}/>
       </Header>
 
       <TransactionsContainer>
