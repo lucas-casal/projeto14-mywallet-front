@@ -3,7 +3,6 @@ import { BiExit } from "react-icons/bi"
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
 import React, {useContext, useEffect, useState} from "react"
 import axios from "axios"
-import dotenv from "dotenv"
 import { UserContext } from "../components/UserContext"
 import TransactionBox from "../components/TransactionBox"
 import { useNavigate } from "react-router-dom"
@@ -24,10 +23,10 @@ export default function HomePage(props) {
       setName(res.data.name)
       setBalance(res.data.balance)
       setTransactions(res.data.relatedTransactions)
-      console.log(res.data)
+      props.setRefresh(false)
     })
-    .catch(err => console.log(err))
-  }, [contexto.token, props.logged])
+    .catch(err => logout())
+  }, [contexto.token, props.logged, props.refresh])
 
   function newIncome(){
     navigate('/nova-transacao/entrada')
@@ -51,7 +50,7 @@ export default function HomePage(props) {
       <TransactionsContainer>
         <ul>
           {transactions.map(x =>{
-            return <TransactionBox key={x._id} tipo={x.tipo} valor={x.value} descricao={x.description} data={x.time}/>
+            return <TransactionBox setLastDescription={props.setLastDescription} setLastValue={props.setLastValue} setIdTransaction={props.setIdTransaction} setRefresh={props.setRefresh} id={x._id} key={x._id} tipo={x.tipo} valor={x.value} descricao={x.description} data={x.time}/>
           })}
         </ul>
 

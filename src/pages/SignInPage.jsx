@@ -11,11 +11,12 @@ export default function SignInPage(props) {
     event.preventDefault()
     props.login()
   }    
-  props.setLogged(false)
+  
 
   useEffect(()=>{
     props.logged ? navigate('/home') : ''
   }, [props.logged])
+
 
   return (
     <SingInContainer>

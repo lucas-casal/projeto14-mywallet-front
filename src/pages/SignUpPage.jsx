@@ -14,6 +14,7 @@ export default function SignUpPage(props) {
 
   useEffect(()=>{
     props.registered ? navigate('/') : ''
+    props.setRegistered(false)
   }, [props.registered])
 
   return (
