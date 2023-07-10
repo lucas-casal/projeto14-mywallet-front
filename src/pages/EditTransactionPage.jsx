@@ -18,12 +18,16 @@ export default function EditTransactionsPage(props) {
   useEffect(() => {
     if(!token) return logout()
     axios.get(`${import.meta.env.VITE_API_URL}/home`, {headers:token})
-    .then(res => {console.log(res)})
-    .catch((err) => console.log(err))
+    .then(res => console.log(res))
+    .catch((err) => { 
+      console.log(err)
+      if (err.response.status === 401) return logout()
+      console.log(err)
+    })
   }, [])
 
   function logout(){
-    props.logout()
+    localStorage.clear('token')
     navigate('/')
   }
 

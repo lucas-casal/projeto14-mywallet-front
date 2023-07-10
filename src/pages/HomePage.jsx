@@ -25,7 +25,11 @@ export default function HomePage(props) {
       setTransactions(res.data.relatedTransactions)
       props.setRefresh(false)
     })
-    .catch(err => logout())
+    .catch(err => {
+      console.log(err)
+      if (err.response.status === 401) return logout()
+      console.log(err)
+    })
   }, [contexto.token, props.logged, props.refresh])
 
   function newIncome(){
@@ -36,7 +40,7 @@ export default function HomePage(props) {
   }
 
   function logout(){
-    props.logout()
+    localStorage.clear('token')
     navigate('/')
   }
 
