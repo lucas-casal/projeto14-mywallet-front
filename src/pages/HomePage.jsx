@@ -22,7 +22,7 @@ export default function HomePage(props) {
     .then(res =>{
       setName(res.data.name)
       setBalance(res.data.balance)
-      setTransactions(res.data.relatedTransactions)
+      setTransactions((res.data.relatedTransactions).reverse())
       props.setRefresh(false)
     })
     .catch(err => {

@@ -20,7 +20,7 @@ export default function TransactionsPage(props) {
   return (
     <TransactionsContainer>
       <h1>Nova {tipo}</h1>
-      <form onSubmit={(event) => {submitForm(event)}}>
+      <form onSubmit={(event) => {/*props.value > 0 ? */submitForm(event)/*: event.preventDefault(); alert('O valor deve ser positivo')*/}}>
         <input required data-test="registry-amount-input" onChange={props.handleValue} placeholder="Valor" type="text"/>
         <input required data-test="registry-name-input" onChange={props.handleDescription} placeholder="Descrição" type="text" />
         <button data-test="registry-save" >Salvar {tipo}</button>

@@ -161,7 +161,7 @@ export default function App() {
           <Route path="/home" element={<HomePage setLogged={setLogged} setIdTransaction={setIdTransaction} setLastDescription={setLastDescription} setLastValue={setLastValue} setRefresh={setRefresh} refresh={refresh} logout={logout} logged={logged} setTipo={setTipo} />} />
           <Route path='/nova-transacao/:tipo' element={<TransactionsPage logged={logged} logout={logout} setSend={setSend} send={send} tipo={tipo} sendTransaction={sendTransaction} handleValue={handleValue} handleDescription={handleDescription}/>} />
           <Route path='/editar-registro/:tipo/:id' element={<EditTransactionsPage logged={logged} editTransaction={editTransaction} handleLastValue={handleLastValue} handleLastDescription={handleLastDescription} idTransaction={idTransaction} lastValue={lastValue} lastDescription={lastDescription} logout={logout} setSend={setSend} send={send} tipo={tipo} />} />
-        </Routes>
+        </Routes>avigate('/home')
       </UserContext.Provider>
       </BrowserRouter>
     </PagesContainer>
