@@ -2,7 +2,6 @@ import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import MyWalletLogo from "../components/MyWalletLogo"
 import { useEffect } from "react";
-import { UserContext } from "../components/UserContext";
 
 export default function SignInPage(props) {
   const navigate = useNavigate();
@@ -11,7 +10,7 @@ export default function SignInPage(props) {
     event.preventDefault()
     props.login()
   }    
-  
+  console.log(props.logged)
 
   useEffect(()=>{
     props.logged ? navigate('/home') : ''

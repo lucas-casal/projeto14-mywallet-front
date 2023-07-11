@@ -28,16 +28,25 @@ function updateTransaction(x){
 }
 
   return (
+    <Container>
     <ListItemContainer id={props.id} onClick={x => updateTransaction(x)}>
         <InfoBox>
             <Data>{props.data}</Data>
             <Descricao data-test="registry-name">{props.descricao}</Descricao>
         </InfoBox>
         <Value data-test="registry-amount" color={props.tipo === 'entrada'? "positivo" : "negativo"}>{valor}</Value>
-        <DeleteIcon id={props.id} onClick={(x)=> deleteTransaction(x)}>x</DeleteIcon>
     </ListItemContainer>
+    <DeleteIcon id={props.id} onClick={(x)=> deleteTransaction(x)}>x</DeleteIcon>
+    </Container>
   )
 }
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  justify-content: space-between
+`
 const DeleteIcon = styled.p`
   font-family: Raleway;
   font-size: 16px;
@@ -75,6 +84,7 @@ const Descricao = styled.strong`
 `
 
 const ListItemContainer = styled.li`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -84,6 +94,9 @@ const ListItemContainer = styled.li`
   div span {
     color: #c6c6c6;
     margin-right: 10px;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `
 const Value = styled.div`

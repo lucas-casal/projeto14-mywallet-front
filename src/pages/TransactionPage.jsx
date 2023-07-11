@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components"
-import axios from "axios";
 
 export default function TransactionsPage(props) {
   const navigate = useNavigate()
@@ -12,24 +11,11 @@ export default function TransactionsPage(props) {
     props.sendTransaction(tipo)
     navigate('/home')
   }
-  const token = localStorage.getItem('token')
+
   useEffect(() => {
-    if(!token) return logout()
-    axios.get(`${import.meta.env.VITE_API_URL}/home`, {headers:token})
-    .then(res => console.log(res))
-    .catch((err) => { 
-      console.log(err)
-      if (err.response.status === 401) return logout()
-      console.log(err)
-    })
-
-
+    console.log(props.logged)
+    props.logged && localStorage.getItem('token') ? '' : navigate('/')
   }, [])
-
-  function logout(){
-    localStorage.clear('token')
-    navigate('/')
-  }
 
   return (
     <TransactionsContainer>

@@ -73,7 +73,9 @@ export default function App() {
       axios.post(`${import.meta.env.VITE_API_URL}/`, objSent)
       .then( ans => {
         localStorage.setItem('token', ans.data)
+        console.log(ans.data)
         setLogged(true)
+        setRefresh(true)
       })
       .catch (err => {
         console.log(err)
@@ -123,6 +125,7 @@ export default function App() {
     .then( ans => {
       console.log(ans)
       localStorage.clear()
+      setLogged(false)
     })
     .catch (err => {
       console.log(err)
@@ -155,9 +158,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<SignInPage setLogged={setLogged} logged={logged} login={login} handleEmail={handleEmail} handlePassword={handlePassword}/>} />
           <Route path="/cadastro" element={<SignUpPage setRegistered={setRegistered} registered={registered} register={register} handleEmail={handleEmail} handlePassword={handlePassword} handleName={handleName} handlePassCheck={handlePassCheck}/>} />
-          <Route path="/home" element={<HomePage setIdTransaction={setIdTransaction} setLastDescription={setLastDescription} setLastValue={setLastValue} setRefresh={setRefresh} refresh={refresh} logout={logout} logged={logged} setTipo={setTipo} />} />
-          <Route path='/nova-transacao/:tipo' element={<TransactionsPage logout={logout} setSend={setSend} send={send} tipo={tipo} sendTransaction={sendTransaction} handleValue={handleValue} handleDescription={handleDescription}/>} />
-          <Route path='/editar-registro/:tipo/:id' element={<EditTransactionsPage editTransaction={editTransaction} handleLastValue={handleLastValue} handleLastDescription={handleLastDescription} idTransaction={idTransaction} lastValue={lastValue} lastDescription={lastDescription} logout={logout} setSend={setSend} send={send} tipo={tipo} />} />
+          <Route path="/home" element={<HomePage setLogged={setLogged} setIdTransaction={setIdTransaction} setLastDescription={setLastDescription} setLastValue={setLastValue} setRefresh={setRefresh} refresh={refresh} logout={logout} logged={logged} setTipo={setTipo} />} />
+          <Route path='/nova-transacao/:tipo' element={<TransactionsPage logged={logged} logout={logout} setSend={setSend} send={send} tipo={tipo} sendTransaction={sendTransaction} handleValue={handleValue} handleDescription={handleDescription}/>} />
+          <Route path='/editar-registro/:tipo/:id' element={<EditTransactionsPage logged={logged} editTransaction={editTransaction} handleLastValue={handleLastValue} handleLastDescription={handleLastDescription} idTransaction={idTransaction} lastValue={lastValue} lastDescription={lastDescription} logout={logout} setSend={setSend} send={send} tipo={tipo} />} />
         </Routes>
       </UserContext.Provider>
       </BrowserRouter>

@@ -8,29 +8,16 @@ export default function EditTransactionsPage(props) {
   const {tipo} = useParams()
   const {id} = useParams()
 
+  useEffect(() => {
+    props.logged && localStorage.getItem('token') ? '' : navigate('/')
+  }, [])
+
   function submitForm(event){
     event.preventDefault();
     props.editTransaction(tipo, id)
     navigate('/home')
   }
   
-  const token = localStorage.getItem('token')
-  useEffect(() => {
-    if(!token) return logout()
-    axios.get(`${import.meta.env.VITE_API_URL}/home`, {headers:token})
-    .then(res => console.log(res))
-    .catch((err) => { 
-      console.log(err)
-      if (err.response.status === 401) return logout()
-      console.log(err)
-    })
-  }, [])
-
-  function logout(){
-    localStorage.clear('token')
-    navigate('/')
-  }
-
   return (
     <TransactionsContainer>
       <h1>Nova {tipo}</h1>

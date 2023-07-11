@@ -14,8 +14,8 @@ export default function HomePage(props) {
   const [balance, setBalance] = useState('')
   const [transactions, setTransactions] = useState([])
 
-  console.log(contexto.token)
   useEffect(() => {
+    props.logged && localStorage.getItem('token') ? '' : navigate('/')
     axios.get(`${import.meta.env.VITE_API_URL}/home`, {
       headers: {token: contexto.token}
     })
@@ -41,6 +41,7 @@ export default function HomePage(props) {
 
   function logout(){
     localStorage.clear('token')
+    props.setLogged(false)
     navigate('/')
   }
 
