@@ -22,8 +22,8 @@ export default function EditTransactionsPage(props) {
     <TransactionsContainer>
       <h1>Nova {tipo}</h1>
       <form onSubmit={(event) => {submitForm(event)}}>
-        <input data-test="registry-amount-input" onChange={props.handleLastValue} placeholder="Valor" type="text" value={props.lastValue}/>
-        <input data-test="registry-name-input" onChange={props.handleLastDescription} placeholder="Descrição" type="text" value={props.lastDescription} />
+        <input required data-test="registry-amount-input" onChange={props.handleLastValue} placeholder="Valor" type="text" value={props.lastValue}/>
+        <input required data-test="registry-name-input" onChange={props.handleLastDescription} placeholder="Descrição" type="text" value={props.lastDescription} />
         <button data-test="registry-save" >Salvar {tipo}</button>
       </form>
     </TransactionsContainer>
