@@ -61,7 +61,7 @@ export default function HomePage(props) {
 
         <article>
           <strong>Saldo</strong>
-          <Value data-test="total-amount" color={balance >= 0 ? "positivo" : "negativo"}>{balance}</Value>
+          <Value data-test="total-amount" color={balance >= 0 ? "positivo" : "negativo"}>{parseFloat(balance).toFixed(2).replace('.', ',')}</Value>
         </article>
       </TransactionsContainer>
 

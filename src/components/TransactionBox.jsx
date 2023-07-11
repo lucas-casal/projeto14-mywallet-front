@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 export default function TransactionBox(props){
   const navigate = useNavigate()
   const contexto = useContext(UserContext)
-  const valor = parseFloat(props.valor).toFixed(2)
+  const valor = (parseFloat(props.valor).toFixed(2)).replace('.', ',')
   const token = localStorage.getItem('token')
   async function deleteTransaction(x){
     try{
